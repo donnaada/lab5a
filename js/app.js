@@ -128,7 +128,7 @@ function multiplyArray(multArr) { //eslint-disable-line
 // multiplyArray(multArr);
 
 // Here is the test for multiplyArray(); uncomment it to run it
-testMultiplyArray(testArray);
+// testMultiplyArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
 
@@ -152,11 +152,29 @@ Test this function by hand in the console to get it working, and when you think 
 let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
+  let product = 0;
+  let dynamicArrayString = 'The numbers 1,2,3,4,5 have a product of 120.'
+  
+  // stops when there is only one value left in the array 
+  while (dynamicArray.length != 1){
 
+    // runs multiply function over the first two values in the dynamicArray and stores in the product variable
+    product = multiply(dynamicArray[0], dynamicArray[1])[0];
+    
+    // remove the first & second values in the array
+    dynamicArray.shift();
+    dynamicArray.shift();
+  
+    //adds product to the array in the first position so we continue to multiply the product with the next array value until the product is the only variable left
+    dynamicArray.unshift(product);
 
+  }
+
+  return [dynamicArray[0], dynamicArrayString];
+  
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyAnyArray(testDynamicArray);
+testMultiplyAnyArray(testDynamicArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
