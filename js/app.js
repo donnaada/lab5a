@@ -55,15 +55,19 @@ Test this function by hand in the console to get it working, and when you think 
 function sumAndMultiply(a, b, c) { //eslint-disable-line
   // let sum = a + b + c;
   let sum1 = sum(a,b);
-  let sum2 = sum(sum1[0], c);
+  sum1 = sum1[0];
+  let sum2 = sum(sum1, c);
+  sum2 = sum2[0];
   // let product = a * b * c;
   let p1 = multiply(a, b);
-  let p2 = multiply(p1[0], c);
+  p1 = p1[0];
+  let p2 = multiply(p1, c);
+  p2 = p2[0]
   let sumString = '4 and 7 and 5 sum to 16.';
   let productString = 'The product of 4 and 7 and 5 is 140.';
 
 
-  return [sum2[0], p2[0], sumString, productString];
+  return [sum2, p2, sumString, productString];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -87,11 +91,13 @@ let testArray = [2, 3, 4]; //eslint-disable-line
 function sumArray(sumArr) { //eslint-disable-line
 
   let sum1 = sum(sumArr[0], sumArr[1]);
-  let sum2 = sum(sum1[0], sumArr[2]);
+  sum1 = sum1[0];
+  let sum2 = sum(sum1, sumArr[2]);
+  sum2 = sum2[0];
 
   let sumString = `${sumArr[0]},${sumArr[1]},${sumArr[2]} was passed in as an array of numbers, and ${sum2} is their sum.`;
 
-  return [sum2[0], sumString];
+  return [sum2, sumString];
 }
 
 // Here is the test for sumArray(); uncomment it to run it
@@ -132,7 +138,7 @@ function multiplyArray(multArr) { //eslint-disable-line
 // Here is the test for multiplyArray(); uncomment it to run it
 // testMultiplyArray(testArray);
 
-// Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
+// Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop.
 
 // You're done! Submit the link to the repo following the instructions in Canvas. Or, try out the stretch goal below...
 
@@ -156,25 +162,26 @@ let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
   let product = 0;
   let dynamicArrayString = 'The numbers 1,2,3,4,5 have a product of 120.'
-  
-  // stops when there is only one value left in the array 
+
+  // stops when there is only one value left in the array
   while (dynamicArray.length !== 1){
 
     // runs multiply function over the first two values in the dynamicArray and stores in the product variable
     product = multiply(dynamicArray[0], dynamicArray[1]);
     product = product[0];
-    
-    // remove the first & second values in the array
-    dynamicArray.shift();
-    dynamicArray.shift();
-  
+
+    // for-loop to remove the first & second values in the array
+    for(let i = 0; i < 2; i++){
+      dynamicArray.shift();
+    }
+
     //adds product to the array in the first position so we continue to multiply the product with the next array value until the product is the only variable left
     dynamicArray.unshift(product);
 
   }
 
   return [dynamicArray[0], dynamicArrayString];
-  
+
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
