@@ -54,20 +54,20 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
   // let sum = a + b + c;
-  let sum1 = sum(a,b)[0];
-  let sum2 = sum(sum1, c)[0];
+  let sum1 = sum(a,b);
+  let sum2 = sum(sum1[0], c);
   // let product = a * b * c;
-  let p1 = multiply(a, b)[0];
-  let p2 = multiply(p1, c)[0];
+  let p1 = multiply(a, b);
+  let p2 = multiply(p1[0], c);
   let sumString = '4 and 7 and 5 sum to 16.';
   let productString = 'The product of 4 and 7 and 5 is 140.';
 
 
-  return [sum2, p2, sumString, productString];
+  return [sum2[0], p2[0], sumString, productString];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
-// testSumAndMultiply(4,7,5);
+testSumAndMultiply(4,7,5);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -86,12 +86,12 @@ let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
 
-  let sum1 = sum(sumArr[0], sumArr[1])[0];
-  let sum2 = sum(sum1, sumArr[2])[0];
+  let sum1 = sum(sumArr[0], sumArr[1]);
+  let sum2 = sum(sum1[0], sumArr[2]);
 
   let sumString = `${sumArr[0]},${sumArr[1]},${sumArr[2]} was passed in as an array of numbers, and ${sum2} is their sum.`;
 
-  return [sum2, sumString];
+  return [sum2[0], sumString];
 }
 
 // Here is the test for sumArray(); uncomment it to run it
@@ -116,12 +116,14 @@ Test this function by hand in the console to get it working, and when you think 
 function multiplyArray(multArr) { //eslint-disable-line
 
   // let x = multArr[0] * multArr[1];
-  let product1 = multiply(multArr[0], multArr[1])[0];
-  let product2 = multiply(product1, multArr[2])[0];
+  let product1 = multiply(multArr[0], multArr[1]);
+  product1 = product1[0];
+  let product2 = multiply(product1, multArr[2]);
+  product2 = product2[0];
 
   let string = `The numbers ${multArr[0]},${multArr[1]},${multArr[2]} have a product of ${product2}.`;
 
-  return[product2, string];
+  return[product2[0], string];
 
 }
 
@@ -156,10 +158,11 @@ function multiplyAnyArray(dynamicArray) { //eslint-disable-line
   let dynamicArrayString = 'The numbers 1,2,3,4,5 have a product of 120.'
   
   // stops when there is only one value left in the array 
-  while (dynamicArray.length != 1){
+  while (dynamicArray.length !== 1){
 
     // runs multiply function over the first two values in the dynamicArray and stores in the product variable
-    product = multiply(dynamicArray[0], dynamicArray[1])[0];
+    product = multiply(dynamicArray[0], dynamicArray[1]);
+    product = product[0];
     
     // remove the first & second values in the array
     dynamicArray.shift();
